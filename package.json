@@ -1,6 +1,6 @@
 {
   "name": "nestjs-mocha-decorators",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Use decorators to run your Nest.js test suite",
   "author": "Maximiliano Carrizo",
   "license": "UNLICENSED",
@@ -43,5 +43,9 @@
     "nestjs",
     "mocha",
     "decorators"
-  ]
+  ],
+  "homepage": "https://github.com/demostenes1509/nestjs-mocha-decorators",
+  "bugs": {
+    "url": "https://github.com/demostenes1509/nestjs-mocha-decorators/issues"
+  }
 }
