@@ -1,6 +1,6 @@
 {
   "name": "nestjs-mocha-decorators",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Use decorators to run your Nest.js test suite",
   "author": "Maximiliano Carrizo",
   "license": "UNLICENSED",

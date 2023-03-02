@@ -115,3 +115,9 @@ SUITETORUN="Demo Test Suite" npm run test
 ```
 TESTTORUN="Get Test" npm run test
 ```
+
+## Comments, suggestions and more
+
+Creating a ticket on github can be very annoying ... send me your comments, problems and suggestions to mcarrizo@gmail.com
+
+Best !
