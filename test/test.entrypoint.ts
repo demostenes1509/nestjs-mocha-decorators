@@ -2,8 +2,7 @@
 import { HttpModule } from '@nestjs/axios';
 import { ConsoleLogger, INestApplication } from '@nestjs/common';
 import { Test, TestingModule, TestingModuleBuilder } from '@nestjs/testing';
-import { MochaTestService } from 'src/mochaTest.service';
-import { MochaTestModule } from '../src';
+import { MochaTestModule, MochaTestService } from '../src';
 import { DemoTest } from './tests/demo.test';
 import { YourAppModule } from './your-app/your-app.module';
 import { run } from 'mocha';
