@@ -1,4 +1,4 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import { describe, it } from 'mocha';
 import { DecoratedSuites } from './mochaTest.decorators';
@@ -7,11 +7,12 @@ const TESTTORUN = process.env.TESTTORUN
 const SUITETORUN = process.env.SUITETORUN
 
 @Injectable()
-export class MochaTestService implements OnModuleInit {
-  constructor(private moduleRef: ModuleRef) {}
+export class MochaTestService {
+  constructor(private moduleRef: ModuleRef) { }
 
-  onModuleInit(): void {
-    const isSelectedToRun = (actualName:string, selectedName:string): boolean => {
+  declareTests(): void {
+
+    const isSelectedToRun = (actualName: string, selectedName: string): boolean => {
       return !selectedName || selectedName === actualName;
     };
 

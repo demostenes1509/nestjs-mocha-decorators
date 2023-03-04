@@ -1,6 +1,6 @@
 {
   "name": "nestjs-mocha-decorators",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Use decorators to run your Nest.js test suite",
   "author": "Maximiliano Carrizo",
   "license": "UNLICENSED",
@@ -10,7 +10,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "mocha --exit --require ts-node/register --require tsconfig-paths/register test/test.entrypoint.ts"
+    "test": "mocha --delay --exit --require ts-node/register --require tsconfig-paths/register test/test.entrypoint.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
