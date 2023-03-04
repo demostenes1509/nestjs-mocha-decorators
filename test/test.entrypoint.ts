@@ -2,10 +2,10 @@
 import { HttpModule } from '@nestjs/axios';
 import { ConsoleLogger, INestApplication } from '@nestjs/common';
 import { Test, TestingModule, TestingModuleBuilder } from '@nestjs/testing';
+import { run } from 'mocha';
 import { MochaTestModule, MochaTestService } from '../src';
 import { DemoTest } from './tests/demo.test';
 import { YourAppModule } from './your-app/your-app.module';
-import { run } from 'mocha';
 
 const initNest = async (): Promise<INestApplication> => {
   const testingModuleBuilder: TestingModuleBuilder = await Test.createTestingModule({
@@ -22,7 +22,12 @@ const initNest = async (): Promise<INestApplication> => {
 }
 
 (async (): Promise<void> => {
-  const app = await initNest();
-  app.get(MochaTestService).declareTests()
-  run();
+  try {
+    const app = await initNest();
+    app.get(MochaTestService).declareTests()
+    run();
+  }
+  catch(error) {
+    console.error(error)
+  }
 })();
