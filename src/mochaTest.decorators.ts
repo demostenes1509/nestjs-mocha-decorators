@@ -1,9 +1,14 @@
 interface ConstructorType {
-  new(): void;
+  new (): void;
 }
 
 interface FunctionType {
   (): void;
+}
+
+export enum TestEventsEnum {
+  BEFORE_EACH = 'beforeEach',
+  AFTER_EACH = 'afterEach',
 }
 
 export const DecoratedSuites: {
@@ -14,6 +19,21 @@ export const DecoratedSuites: {
     tests: Array<{ method: FunctionType; description: string }>;
   };
 } = {};
+
+export const DecoratedEvents: {
+  [suiteName: string]: {
+    target: ConstructorType;
+    events: Array<{ method: FunctionType; eventName: TestEventsEnum }>;
+  };
+} = {};
+
+export const TestEventsSuite = () => {
+  return (target: ConstructorType): void => {
+    if (!DecoratedEvents.hasOwnProperty(target.name))
+      DecoratedEvents[target.name] = { events: [], target };
+    DecoratedEvents[target.name].target = target;
+  };
+};
 
 export const TestSuite = (title: string, parallel = false) => {
   return (target: ConstructorType): void => {
@@ -28,7 +48,11 @@ export const TestSuite = (title: string, parallel = false) => {
 
 /* eslint-disable  @typescript-eslint/ban-types */
 export function Test(description: string): MethodDecorator {
-  return (target: Object, _propertyKey: string | symbol, descriptor: PropertyDescriptor): void => {
+  return (
+    target: Object,
+    _propertyKey: string | symbol,
+    descriptor: PropertyDescriptor,
+  ): void => {
     const className = target.constructor.name;
     if (!DecoratedSuites.hasOwnProperty(className))
       DecoratedSuites[className] = {
@@ -43,4 +67,24 @@ export function Test(description: string): MethodDecorator {
     });
   };
 }
+
+export function TestEvent(eventName: TestEventsEnum): MethodDecorator {
+  return (
+    target: Object,
+    _propertyKey: string | symbol,
+    descriptor: PropertyDescriptor,
+  ): void => {
+    const className = target.constructor.name;
+    if (!DecoratedEvents.hasOwnProperty(className))
+      DecoratedEvents[className] = {
+        events: [],
+        target: null,
+      };
+    DecoratedEvents[className].events.push({
+      eventName,
+      method: descriptor.value,
+    });
+  };
+}
+
 /* eslint-enable  @typescript-eslint/ban-types */
