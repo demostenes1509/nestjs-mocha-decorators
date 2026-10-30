@@ -1,9 +1,9 @@
 {
   "name": "nestjs-mocha-decorators",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Use test decorators to run your Nest.js test suite using mocha internally",
   "author": "Maximiliano Carrizo",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
