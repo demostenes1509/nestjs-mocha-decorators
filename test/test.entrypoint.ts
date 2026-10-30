@@ -10,7 +10,7 @@ import { Events } from './events';
 
 const initNest = async (): Promise<INestApplication> => {
   const testingModuleBuilder: TestingModuleBuilder =
-    await Test.createTestingModule({
+    Test.createTestingModule({
       imports: [
         YourAppModule, // The app to test
         MochaTestModule.registerTests([DemoTest, Events], [HttpModule]), // Your test suite
@@ -19,7 +19,7 @@ const initNest = async (): Promise<INestApplication> => {
   const testingModule: TestingModule = await testingModuleBuilder.compile();
   const app = testingModule.createNestApplication();
   app.useLogger(new ConsoleLogger());
-  app.listen(4343);
+  await app.listen(4343);
   return app;
 };
 
